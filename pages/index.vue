@@ -2,6 +2,7 @@
   <div class="content">
     <nuxt-link :to="url">
       <img :src="cover"/>
+      <nuxt-link :to="url" class="button">View Release</nuxt-link>
     </nuxt-link>
   </div>
 </template>
@@ -32,8 +33,13 @@ export default {
     img {
       opacity: 0;
       max-width: 500px;
+      margin-bottom: 20px;
       width: 100%;
       transform: rotateY(-180deg);
+    }
+    .button {
+      max-width: 500px;
+      width: 100%;
     }
   }
 </style>
