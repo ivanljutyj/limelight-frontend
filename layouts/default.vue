@@ -20,7 +20,7 @@
     },
     mounted() {
       this.timeline.to('.white-bg', 0.8, { height: "100%" })
-      this.timeline.to('.white-bg', 0.3, { width: "calc(100% - 300px)" })
+      this.timeline.staggerTo('.white-bg', 0.3, { width: "calc(100% - 300px)" }, 0.3)
       this.timeline.fromTo('.sidebar', { opacity: 0 }, { opacity: 1, ease: Linear.easeInOut })
       this.timeline.fromTo('.app', { opacity: 0 }, { opacity: 1, ease: Linear.easeInOut })
     }
@@ -28,6 +28,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .sidebar {
+    opacity: 0;
+  }
   .black-bg {
     @include mq($until: desktop) {
       display: none;
