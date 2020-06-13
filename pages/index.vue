@@ -31,7 +31,7 @@ export default {
       this.url = '/releases/' + this.release.slug
       this.cover = this.$axios.defaults.baseURL + this.release.cover.url;
       let cover = document.getElementById('cover');
-      cover.onload = function () {
+      cover.onload =  () => {
         this.timeline.to('.content img', 0.5, { opacity: 1, rotationY: 0 })
         this.timeline.staggerTo('.content .button', 0.5, { opacity: 1 }, 0.3)
       }
