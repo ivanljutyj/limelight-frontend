@@ -23,6 +23,7 @@ export default {
       this.url = '/releases/' + this.release.slug
       this.cover = this.$axios.defaults.baseURL + this.release.cover.url;
       this.timeline.to('.content img', 0.5, { opacity: 1, rotationY: 0 })
+      this.timeline.staggerTo('.content .button', 0.5, { opacity: 1 }, 0.3)
     })
   },
 }
@@ -39,6 +40,7 @@ export default {
     }
     .button {
       max-width: 500px;
+      opacity: 0;
       width: 100%;
     }
   }
