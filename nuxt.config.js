@@ -86,13 +86,19 @@ export default {
   generate: {
     routes(callback) {
        axios.get('https://limelight-visions.herokuapp.com/artists').then((response) => {
-        const artists = response.data.map((a) => {
-          return {
-            route: '/artists/' + a.slug,
-            payload: a
-          }
+        const items = response.data.map((a) => {
+            return '/artists/' + a.slug;
         });
-        callback(null, artists)
+
+        response.data.forEach((a) => {
+          if (a.releases.length) {
+            a.releases.forEach((b) => {
+              items.push('/releases/' + b.slug)
+            });
+          }
+        })
+
+        callback(null, items)
       })
      .catch(callback)
     }
