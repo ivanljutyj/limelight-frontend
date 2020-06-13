@@ -81,5 +81,18 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  generate: {
+    routes: function () {
+      return axios.get('/artists').then(response => {
+        response.data.forEach(a => {
+          return {
+            route: '/artists/' + a.slug,
+            payload: a
+          }
+        });
+      });
+    }
+
   }
 }
