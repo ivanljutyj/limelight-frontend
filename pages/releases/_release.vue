@@ -17,6 +17,14 @@
 <script>
   import { TimelineMax } from 'gsap';
   export default {
+    asyncData(ctx) {
+      ctx.seo({
+        name: 'Limelight Visions',
+        title: this.release.title,
+        templateTitle: '%name% - %title%',
+        description: 'The release page for ' + this.release.title
+      })
+    },
     data: () => ({
       release: {},
       timeline: new TimelineMax(),

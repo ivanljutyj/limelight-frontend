@@ -46,7 +46,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
-  	'nuxt-webfontloader'
+  	'nuxt-webfontloader',
+    'nuxt-seo'
   ],
   /*
   ** Web font loader
@@ -65,6 +66,13 @@ export default {
   axios: {
     baseURL: 'https://limelight-visions.herokuapp.com'
   },
+  seo: {
+    name: 'Limelight Visions',
+    title: 'Main',
+    templateTitle: '%name% - %title%',
+    description: 'An independent music label based out of Atlanta, GA'
+  },
+
   /*
   ** Style resources
   */
