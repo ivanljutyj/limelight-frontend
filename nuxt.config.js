@@ -11,7 +11,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'Limelight Visions is an independent music label based out of Atlanta, GA' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -47,7 +47,6 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
   	'nuxt-webfontloader',
-    'nuxt-seo'
   ],
   /*
   ** Web font loader
@@ -66,13 +65,6 @@ export default {
   axios: {
     baseURL: 'https://limelight-visions.herokuapp.com'
   },
-  seo: {
-    name: 'Limelight Visions',
-    title: 'Main',
-    templateTitle: '%name% - %title%',
-    description: 'An independent music label based out of Atlanta, GA'
-  },
-
   /*
   ** Style resources
   */

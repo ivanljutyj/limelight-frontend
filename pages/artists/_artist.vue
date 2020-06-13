@@ -26,13 +26,13 @@
 <script>
   import { TimelineMax, TweenMax } from 'gsap';
   export default {
-    asyncData(ctx) {
-      ctx.seo({
-        name: 'Limelight Visions',
-        title: 'Artist',
-        templateTitle: '%name% - %title%',
-        description: ''
-      })
+    head () {
+      return {
+        title: 'Artist | ' + this.currentArtist.name,
+        meta: [
+          { hid: 'description', name: 'description', content: '' }
+        ]
+      }
     },
     data() {
       return {

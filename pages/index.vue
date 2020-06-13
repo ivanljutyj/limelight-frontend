@@ -11,14 +11,7 @@
 import { TimelineMax } from 'gsap';
 
 export default {
-  asyncData(ctx) {
-    ctx.seo({
-      name: 'Limelight Visions',
-      title: 'Home',
-      templateTitle: '%name% - %title%',
-      description: 'An independent music label based out of Atlanta, GA'
-    })
-  },
+
   data: () => ({
     release: {},
     url: '',

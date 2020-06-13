@@ -16,13 +16,13 @@
 import { TimelineMax } from "gsap";
 
 export default {
-  asyncData(ctx) {
-    ctx.seo({
-      name: 'Limelight Visions',
-      title: 'Contact',
-      templateTitle: '%name% - %title%',
-      description: ''
-    })
+  head () {
+    return {
+      title: "Limelight Visions - Contact",
+      meta: [
+        { hid: 'description', name: 'description', content: '' }
+      ]
+    }
   },
   data: () => ({
     contact: {},
