@@ -51,7 +51,7 @@
     },
     methods: {
       async getStreamingLinks() {
-        await this.$axios({ url: '/page?url=' + encodeURI(this.release.songlink), baseURL: 'https://api.song.link' }).then(response => this.links = response.data.nodesByUniqueId);
+        await this.$axios({ url: '/page?url=' + encodeURIComponent(this.release.songlink), baseURL: 'https://api.song.link' }).then(response => this.links = response.data.nodesByUniqueId);
       }
     }
   }
