@@ -26,11 +26,11 @@ export default {
     timeline: new TimelineMax()
   }),
   mounted() {
+    let cover = document.getElementById('cover');
     this.$axios.$get('/releases').then(response => {
       this.release = response[response.length - 1];
       this.url = '/releases/' + this.release.slug
       this.cover = this.$axios.defaults.baseURL + this.release.cover.url;
-      let cover = document.getElementById('cover');
       cover.onload =  () => {
         this.timeline.to('.content img', 0.5, { opacity: 1, rotationY: 0 })
         this.timeline.staggerTo('.content .button', 0.5, { opacity: 1 }, 0.3)
