@@ -1,4 +1,5 @@
 require('dotenv').config()
+import axios from 'axios'
 
 export default {
   mode: 'spa',
@@ -83,15 +84,17 @@ export default {
     }
   },
   generate: {
-    routes: function () {
-      return axios.get('/artists').then(response => {
-        response.data.forEach(a => {
+    routes(callback) {
+       axios.get('https://limelight-visions.herokuapp.com/artists').then((response) => {
+        const artists = response.data.map((a) => {
           return {
             route: '/artists/' + a.slug,
             payload: a
           }
         });
-      });
+        callback(null, artists)
+      })
+     .catch(callback)
     }
 
   }
