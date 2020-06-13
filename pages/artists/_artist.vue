@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="artist__links">
-        <a class="button" v-for="link in currentArtist.buttons" :href="link.url" target="_blank">{{ link.title }}</a>
+        <a class="button" v-for="link in currentArtist.buttons" :href="link.link" target="_blank">{{ link.title }}</a>
       </div>
     </div>
   </div>
