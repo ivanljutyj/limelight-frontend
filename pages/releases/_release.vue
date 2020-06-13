@@ -20,9 +20,9 @@
     asyncData(ctx) {
       ctx.seo({
         name: 'Limelight Visions',
-        title: this.release.title,
+        title: 'Release',
         templateTitle: '%name% - %title%',
-        description: 'The release page for ' + this.release.title
+        description: ''
       })
     },
     data: () => ({

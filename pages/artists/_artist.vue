@@ -29,9 +29,9 @@
     asyncData(ctx) {
       ctx.seo({
         name: 'Limelight Visions',
-        title: this.currentArtist.name,
+        title: 'Artist',
         templateTitle: '%name% - %title%',
-        description: 'The artist page for ' + this.currentArtist.name
+        description: ''
       })
     },
     data() {
