@@ -5,7 +5,7 @@
     </div>
     <div class="content__body">
       <div class="content__cover">
-        <img :src="url">
+        <img id="cover" :src="url">
       </div>
       <div class="content__listen">
         <a class="button" target="_blank" v-for="link in links" v-if="link.url" :href="link.url">{{ link.displayName }}</a>
@@ -47,8 +47,11 @@
     mounted() {
       this.timeline.staggerTo('.content__title', 1, {opacity: 1}, 0.8);
       this.timeline.staggerTo('.content__subtitle', 1, {opacity: 1}, 0.8);
-      this.timeline.staggerTo('.content__cover', 0.5, { opacity: 1, rotationY: 0 });
 
+      let cover = document.getElementById('cover');
+      cover.onload = () => {
+        this.timeline.staggerTo('.content__cover', 0.5, { opacity: 1, rotationY: 0 });
+      };
       this.$axios.$get('releases').then(response => {
         response.filter((a) => {
           if (a.slug === this.$route.params.release) {
