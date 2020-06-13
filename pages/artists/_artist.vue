@@ -30,7 +30,9 @@
       return {
         title: 'Artist | ' + this.currentArtist.name,
         meta: [
-          { hid: 'description', name: 'description', content: '' }
+          { hid: 'description', name: 'description', content: '' },
+          { hid: 'og:title', property: 'og:title', content: this.currentArtist.name },
+          { hid: 'og:image', property: 'og:image', content: this.avatar }
         ]
       }
     },
