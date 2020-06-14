@@ -64,7 +64,7 @@
         for (let i in artists) {
           if (artists[i].slug === this.$route.params.artist) {
             this.currentArtist = artists[i];
-            this.avatar = this.$axios.defaults.baseURL + this.currentArtist.avatar.url;
+            this.avatar = this.$axios.defaults.baseURL + this.currentArtist.avatar_url;
           }
         }
       }

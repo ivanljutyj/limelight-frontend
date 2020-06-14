@@ -27,7 +27,7 @@ export default {
     this.$axios.$get('/releases').then(response => {
       this.release = response[response.length - 1];
       this.url = '/releases/' + this.release.slug
-      this.cover = this.$axios.defaults.baseURL + this.release.cover.url;
+      this.cover = this.$axios.defaults.baseURL + this.release.cover_url;
     });
   },
 }
