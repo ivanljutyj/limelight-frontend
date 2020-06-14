@@ -54,9 +54,9 @@
     mounted() {
       let cover = document.getElementById('cover');
       cover.onload = () => {
-        this.timeline.staggerTo('.content__title', 1, { opacity: 1}, 0.8);
-        this.timeline.staggerTo('.content__subtitle', 1, { opacity: 1}, 0.8);
-        this.timeline.staggerTo('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=0.8");
+        this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
+        this.timeline.to('.content__subtitle', 1, { opacity: 1}, 0.8);
+        this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
       };
       this.$axios.$get('releases').then(response => {
         response.filter((a) => {
