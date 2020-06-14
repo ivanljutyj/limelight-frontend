@@ -39,7 +39,7 @@
     watch: {
       release(value) {
         this.getStreamingLinks()
-        this.url = this.$axios.defaults.baseURL + value.cover_url
+        this.url = value.cover_url
         this.artist = value.artist[0].name;
       },
     },
