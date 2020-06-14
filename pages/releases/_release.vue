@@ -1,13 +1,17 @@
 <template>
   <div class="content">
-    <div class="content__title">
+    <div class="content__title" v-if="!loading">
        {{ artist }} - {{ release.title }}
     </div>
     <div class="content__body">
       <div class="content__cover">
         <img id="cover" :src="url">
       </div>
-      <div class="content__listen">
+      <div class="backdrop" v-if="loading">
+        <div class="spinner"></div>
+        <div class="logo">loading...</div>
+      </div>
+      <div class="content__listen" v-if="!loading">
         <a class="button" target="_blank" v-for="link in links" v-if="link.url" :href="link.url">{{ link.displayName }}</a>
       </div>
     </div>
@@ -15,7 +19,7 @@
 </template>
 
 <script>
-  import { TimelineMax } from 'gsap';
+  import gsap from 'gsap';
   export default {
     head () {
       return {
@@ -29,8 +33,9 @@
     },
     data: () => ({
       release: {},
-      timeline: new TimelineMax(),
+      timeline: gsap.timeline(),
       url: '',
+      loading: true,
       artist: '',
       links: {
         'AUTOMATED_LINK::spotify': { url: '' }
@@ -66,7 +71,10 @@
       async getStreamingLinks() {
         const url = "https://cors-anywhere.herokuapp.com/https://api.song.link";
         await this.$axios({ url: '/page?url=' + encodeURIComponent(this.release.songlink), baseURL: url })
-          .then(response => this.links = response.data.nodesByUniqueId)
+          .then(response => {
+            this.loading = false;
+            this.links = response.data.nodesByUniqueId;
+          })
           .catch(error => console.log(error.response.data));
       }
     }

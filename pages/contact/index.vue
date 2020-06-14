@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { TimelineMax } from "gsap";
+import gsap from "gsap";
 
 export default {
   head () {
@@ -28,7 +28,7 @@ export default {
     contact: {},
     content: {},
     buttons: [],
-    timeline: new TimelineMax()
+    timeline: gsap.timeline()
   }),
   beforeMount() {
     this.$axios.$get('/contact').then(result => this.contact = result.contact);

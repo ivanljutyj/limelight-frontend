@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import { TimelineMax, TweenMax } from 'gsap';
+  import gsap from 'gsap';
   export default {
     head () {
       return {
@@ -41,7 +41,7 @@
         currentArtist: [],
         avatar: "",
         links: "",
-        timeline: new TimelineMax()
+        timeline: gsap.timeline()
       }
     },
     mounted() {

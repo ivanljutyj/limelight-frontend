@@ -10,8 +10,9 @@
       gtag('config', 'UA-169274818-1');
     </script>
 
-    <header-component />
-    <nuxt class="app"/>
+    <header-component v-if="loaded" />
+    <nuxt v-if="loaded"/>
+
     <div class="black-bg"></div>
     <div class="white-bg"></div>
   </div>
@@ -19,20 +20,20 @@
 
 <script>
   import HeaderComponent from '~/components/Header.vue';
-  import { TimelineMax } from 'gsap';
+  import gsap from 'gsap';
 
   export default {
     data: () => ({
-      timeline: new TimelineMax()
+      timeline: gsap.timeline(),
+      loaded: false
     }),
     components: {
       HeaderComponent
     },
     mounted() {
       this.timeline.to('.white-bg', 0.8, { height: "100%" })
-      this.timeline.staggerTo('.white-bg', 0.3, { width: "calc(100% - 300px)" }, 0.3)
-      this.timeline.fromTo('.sidebar', { opacity: 0 }, { opacity: 1, ease: Linear.easeInOut })
-      this.timeline.fromTo('.app', { opacity: 0 }, { opacity: 1, ease: Linear.easeInOut })
+      this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
+      this.timeline.add(() => { this.loaded = !this.loaded })
     }
   }
 </script>

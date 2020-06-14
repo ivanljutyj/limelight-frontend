@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { TimelineMax } from 'gsap';
+import gsap from 'gsap';
 
 export default {
 
@@ -16,7 +16,7 @@ export default {
     release: {},
     url: '',
     cover: '',
-    timeline: new TimelineMax()
+    timeline: gsap.timeline()
   }),
   mounted() {
     let cover = document.getElementById('cover');

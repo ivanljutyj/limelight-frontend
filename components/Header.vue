@@ -62,16 +62,16 @@
 </template>
 
 <script>
-  import { TimelineMax } from 'gsap';
+  import gsap from 'gsap';
   export default {
     data: () => ({
       menuOpen: false,
       releaseMenuOpen: false,
-      releaseMenu: new TimelineMax({ paused: true }),
+      releaseMenu: gsap.timeline({ paused: true }),
       artistMenuOpen: false,
-      artistMenu: new TimelineMax({ paused: true }),
-      timeline: new TimelineMax({ paused: true }),
-      sidebar: new TimelineMax(),
+      artistMenu: gsap.timeline({ paused: true }),
+      timeline: gsap.timeline({ paused: true }),
+      sidebar: gsap.timeline(),
       artists: null,
       releases: null
     }),
