@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="content__title" v-if="!loading">
+    <div class="content__title">
        {{ artist }} - {{ release.title }}
     </div>
     <div class="content__body">
@@ -52,11 +52,10 @@
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
     },
     mounted() {
-      this.timeline.staggerTo('.content__title', 1, {opacity: 1}, 0.8);
-      this.timeline.staggerTo('.content__subtitle', 1, {opacity: 1}, 0.8);
-
       let cover = document.getElementById('cover');
       cover.onload = () => {
+        this.timeline.staggerTo('.content__title', 1, { opacity: 1}, 0.8);
+        this.timeline.staggerTo('.content__subtitle', 1, { opacity: 1}, 0.8);
         this.timeline.staggerTo('.content__cover', 0.5, { opacity: 1, rotationY: 0 });
       };
       this.$axios.$get('releases').then(response => {
