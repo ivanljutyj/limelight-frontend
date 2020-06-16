@@ -82,7 +82,7 @@
     mounted() {
       this.timeline.to('.header', 0.8, { height: '100vh', ease: Linear.easeInOut });
 
-      this.sidebar.to('.sidebar__logo', 1, { opacity: 1 })
+      this.sidebar.to('.sidebar__logo img', 1, { opacity: 1 })
     },
     updated() {
       this.timeline.staggerTo('.header__menu ul li:not(.header__submenu)', 0.3, { opacity: 1 }, 0.1, '-=0.8');
