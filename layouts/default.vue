@@ -40,6 +40,7 @@
       this.timeline.to('.white-bg', 0.8, { height: "100%" })
       this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
       this.timeline.add(() => { this.loaded = !this.loaded })
+      this.timeline.to('.watermark', 0.5, { opacity: 1, bottom: '15px' });
 
       const watermark = document.querySelector('.watermark');
       const watermarkTimeline = gsap.timeline({ paused: true });
@@ -84,10 +85,11 @@
   }
   @include mq($from: desktop) {
     .watermark {
+      opacity: 0;
       display: flex;
       cursor: pointer;
       position: absolute;
-      bottom: 15px;
+      bottom: 0;
       left: 20px;
       &__content {
         opacity: 0;
