@@ -83,6 +83,11 @@
     bottom: 0;
     background-color: #fff;
   }
+  @include mq($until: desktop) {
+    .watermark {
+      display: none;
+    }
+  }
   @include mq($from: desktop) {
     .watermark {
       opacity: 0;
