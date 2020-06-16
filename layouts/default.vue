@@ -15,6 +15,12 @@
 
     <div class="black-bg"></div>
     <div class="white-bg"></div>
+    <div class="watermark">
+      <img src="https://ivanon.io/logo.png">
+      <div class="watermark__content">
+        Designed and developed by <a href="https://ivanon.io">ivanon.io</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +40,18 @@
       this.timeline.to('.white-bg', 0.8, { height: "100%" })
       this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
       this.timeline.add(() => { this.loaded = !this.loaded })
+
+
+      const watermark = document.querySelector('.watermark');
+      const watermarkTimeline = gsap.timeline({ paused: true });
+      watermarkTimeline.to('.watermark__content', 1, { opacity: 1 });
+      watermarkTimeline.to('.watermark img', 1, { filter: "grayscale(0%)"}, "-=1");
+      watermark.addEventListener('mouseover', function() {
+        watermarkTimeline.play();
+      });
+      watermark.addEventListener('mouseout', function() {
+        watermarkTimeline.timeScale(2).reverse(0);
+      });
     }
   }
 </script>
@@ -64,5 +82,25 @@
     right: 0;
     bottom: 0;
     background-color: #fff;
+  }
+  .watermark {
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    &__content {
+      opacity: 0;
+      flex: 1;
+      color: #505050;
+      line-height: 25px;
+      margin-left: 8px;
+      font-size: 11px;
+    }
+    img {
+      opacity: 0.5;
+      filter: grayscale(100%);
+      width: 25px;
+    }
   }
 </style>
