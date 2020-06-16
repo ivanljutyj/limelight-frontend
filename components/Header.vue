@@ -63,6 +63,7 @@
 
 <script>
   import gsap from 'gsap';
+
   export default {
     data: () => ({
       menuOpen: false,
@@ -82,7 +83,8 @@
     mounted() {
       this.timeline.to('.header', 0.8, { height: '100vh', ease: Linear.easeInOut });
 
-      this.sidebar.to('.sidebar__logo img', 1, { opacity: 1 })
+      this.sidebar.to('.sidebar__logo img', 1, { opacity: 1, top: "20px" })
+      this.sidebar.staggerTo('.sidebar ul li', 0.5, { opacity: 1 }, 0.5, "-=0.5")
     },
     updated() {
       this.timeline.staggerTo('.header__menu ul li:not(.header__submenu)', 0.3, { opacity: 1 }, 0.1, '-=0.8');
@@ -149,12 +151,20 @@
         color: $text-color;
       }
     }
-    &__logo img {
-      opacity: 0;
-      width: 250px;
+    &__logo {
+      img {
+        position: absolute;
+        left: 20px;
+        top: 0;
+        opacity: 0;
+        width: 250px;
+      }
     }
     &__menu {
-      margin-top: 50px;
+      margin-top: 150px;
+      ul li {
+        opacity: 0;
+      }
     }
     &__submenu {
       text-transform: lowercase;
