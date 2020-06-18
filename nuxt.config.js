@@ -63,7 +63,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'https://limelight-visions.herokuapp.com'
+    baseURL: 'https://api.limelightvisions.com'
   },
   /*
   ** Style resources
@@ -85,7 +85,7 @@ export default {
   },
   generate: {
     routes(callback) {
-       axios.get('https://limelight-visions.herokuapp.com/artists').then((response) => {
+       axios.get('https://api.limelightvisions.com/artists').then((response) => {
         const items = response.data.map((a) => {
             return '/artists/' + a.slug;
         });
