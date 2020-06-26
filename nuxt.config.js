@@ -2,7 +2,7 @@ require('dotenv').config()
 import axios from 'axios'
 
 export default {
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -31,7 +31,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-	  { src: '~plugins/vue-scrollmagic.js' }
+	  // { src: '~plugins/vue-scrollmagic.js' }
   ],
   /*
   ** Nuxt.js dev-modules

@@ -81,7 +81,7 @@
       this.getReleases();
     },
     mounted() {
-      this.timeline.to('.header', 0.8, { height: '100vh', ease: Linear.easeInOut });
+      this.timeline.to('.header', 0.8, { height: '100vh' });
 
       this.sidebar.to('.sidebar__logo img', 1, { opacity: 1, top: "20px" })
       this.sidebar.staggerTo('.sidebar ul li', 0.5, { opacity: 1 }, 0.5, "-=0.5")
