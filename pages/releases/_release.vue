@@ -21,6 +21,17 @@
 <script>
   import gsap from 'gsap';
   export default {
+    async asyncData (context) {
+      const response = await context.app.$axios.$get('releases');
+      response.filter(a => {
+          if (a.slug === context.params.release) {
+            return a;
+          }
+      });
+      if (response[0]) {
+        return { release: response[0] }
+      }
+    },
     head () {
       return {
         title: 'Release | ' + this.artist + ' - ' + this.release.title,
