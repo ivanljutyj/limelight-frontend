@@ -26,12 +26,11 @@
         title: 'Release | ' + this.artist + ' - ' + this.release.title,
         meta: [
           { hid: 'description', name: 'description', content: 'Stream the single "' + this.artist + ' - ' + this.release.title + '" here now!' },
-          { hid: 'og:title', property: 'og:title', content: this.artist + ' - ' + this.release.title },
-          { hid: 'og:image', property: 'og:image', content: this.url },
-
-          { hid: 'twitter:description', property: 'twitter:description', content: 'Stream the single "' + this.artist + ' - ' + this.release.title + '" here now!'},
-          { hid: 'twitter:title', property: 'twitter:title', content: this.artist + ' - ' + this.release.title },
-          { hid: 'twitter:image:src', property: 'twitter:image:src', content: this.url },
+          { hid: 'og:title', name: 'og:title', content: this.artist + ' - ' + this.release.title },
+          { hid: 'og:image', name: 'og:image', content: this.url },
+          { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+          { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
+          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
         ]
       }
     },
