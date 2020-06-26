@@ -55,13 +55,6 @@
         'AUTOMATED_LINK::spotify': { url: '' }
       }
     }),
-    watch: {
-      release(value) {
-        this.getStreamingLinks()
-        this.url = value.cover_url
-        this.artist = value.artist[0].name;
-      },
-    },
     updated() {
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
     },
@@ -72,13 +65,10 @@
         this.timeline.to('.content__subtitle', 1, { opacity: 1}, 0.8);
         this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
       };
-      this.$axios.$get('releases').then(response => {
-        response.filter((a) => {
-          if (a.slug === this.$route.params.release) {
-            this.release = a;
-          }
-        })
-      });
+      
+      this.url = this.release.cover_url
+      this.artist = this.release.artist[0].name;
+      this.getStreamingLinks()
     },
     methods: {
       async getStreamingLinks() {
