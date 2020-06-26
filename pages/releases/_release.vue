@@ -27,7 +27,11 @@
         meta: [
           { hid: 'description', name: 'description', content: 'Stream the single "' + this.artist + ' - ' + this.release.title + '" here now!' },
           { hid: 'og:title', property: 'og:title', content: this.artist + ' - ' + this.release.title },
-          { hid: 'og:image', property: 'og:image', content: this.url }
+          { hid: 'og:image', property: 'og:image', content: this.url },
+
+          { hid: 'twitter:description', property: 'twitter:description', content: 'Stream the single "' + this.artist + ' - ' + this.release.title + '" here now!'},
+          { hid: 'twitter:title', property: 'twitter:title', content: this.artist + ' - ' + this.release.title },
+          { hid: 'twitter:image:src', property: 'twitter:image:src', content: this.url },
         ]
       }
     },
