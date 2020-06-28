@@ -38,20 +38,13 @@
         ]
       }
     },
-    data() {
-      return {
-        timeline: gsap.timeline()
-      }
-    },
     mounted() {
-      this.timeline.to('.content__title', 0.5, { opacity: 1 });
-      this.timeline.to('.content__subtitle', 0.5, { opacity: 1 });
-
-      this.timeline.to('.artist__bio', 0.5, { opacity: 1 });
-      this.timeline.to('.artist__avatar', 0.5, { opacity: 1, rotationY: 0 } );
-    },
-    updated() {
-      this.timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
+      const timeline = gsap.timeline();
+      timeline.to('.content__title', 0.5, { opacity: 1 });
+      timeline.to('.content__subtitle', 0.5, { opacity: 1 });
+      timeline.to('.artist__bio', 0.5, { opacity: 1 });
+      timeline.to('.artist__avatar', 0.5, { opacity: 1, rotationY: 0 } );
+      timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
     },
     fetch({ store, params }) {
       store.commit('artists/get', params.artist);
