@@ -28,21 +28,25 @@
       HeaderComponent
     },
     mounted() {
-      this.timeline.to('.white-bg', 0.8, { height: "100%" })
-      this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
-      this.timeline.add(() => { this.loaded = !this.loaded })
-      this.timeline.to('.watermark', 0.5, { opacity: 1, bottom: '15px' });
+      if (window.matchMedia('(min-width: 600px)')) {
+        this.timeline.to('.white-bg', 0.8, { height: "100%" })
+        this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
+        this.timeline.add(() => { this.loaded = !this.loaded })
+        this.timeline.to('.watermark', 0.5, { opacity: 1, bottom: '15px' });
 
-      const watermark = document.querySelector('.watermark');
-      const watermarkTimeline = gsap.timeline({ paused: true });
-      watermarkTimeline.to('.watermark__content', 1, { opacity: 1 });
-      watermarkTimeline.to('.watermark img', 1, { filter: "grayscale(0%)"}, "-=1");
-      watermark.addEventListener('mouseover', function() {
-        watermarkTimeline.play();
-      });
-      watermark.addEventListener('mouseout', function() {
-        watermarkTimeline.timeScale(2).reverse(0);
-      });
+        const watermark = document.querySelector('.watermark');
+        const watermarkTimeline = gsap.timeline({ paused: true });
+        watermarkTimeline.to('.watermark__content', 1, { opacity: 1 });
+        watermarkTimeline.to('.watermark img', 1, { filter: "grayscale(0%)"}, "-=1");
+        watermark.addEventListener('mouseover', function() {
+          watermarkTimeline.play();
+        });
+        watermark.addEventListener('mouseout', function() {
+          watermarkTimeline.timeScale(2).reverse(0);
+        });
+      } else {
+        this.loaded = !this.loaded;
+      }
     }
   }
 </script>
