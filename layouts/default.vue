@@ -28,7 +28,7 @@
       HeaderComponent
     },
     mounted() {
-      if (window.matchMedia('(min-width: 600px)')) {
+      if (window.matchMedia('(min-width: 980px)')) {
         this.timeline.to('.white-bg', 0.8, { height: "100%" })
         this.timeline.to('.white-bg', 0.5, { width: "calc(100% - 300px)" })
         this.timeline.add(() => { this.loaded = !this.loaded })
