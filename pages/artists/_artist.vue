@@ -55,8 +55,8 @@
     updated() {
       this.timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
     },
-    fetch({ state, params }) {
-      state.commit('artists/get', params.artist);
+    fetch({ store, params }) {
+      store.commit('artists/get', params.artist);
     },
     computed: {
       ...mapState({
