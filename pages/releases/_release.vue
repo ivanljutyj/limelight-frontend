@@ -37,44 +37,41 @@
       }
     },
     data: () => ({
-      timeline: gsap.timeline(),
+      timeline: gsap.timeline({ paused: true }),
       url: '',
       loading: true,
       artist: '',
-      links: {
-        'AUTOMATED_LINK::spotify': { url: '' }
-      }
     }),
     updated() {
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
+      this.timeline.play();
+    },
+    beforeMount() {
+      this.getStreamingLinks();
     },
     mounted() {
-      let cover = document.getElementById('cover');
+      this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
+      this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
+
+      const cover = document.getElementById('cover');
       cover.onload = () => {
-        this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
-        this.timeline.to('.content__subtitle', 1, { opacity: 1}, 0.8);
-        this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
       };
       
       this.url = this.release.cover_url
       this.artist = this.release.artist[0].name;
-      this.getStreamingLinks()
     },
     fetch({ store, params }) {
       store.commit('releases/get', params.release); 
     },
     computed: {
-      ...mapState({ release: state => state.releases.release })
+      ...mapState({ release: state => state.releases.release, links: state => state.releases.links })
     },
     methods: {
       async getStreamingLinks() {
-        const url = "https://cors-anywhere.herokuapp.com/https://api.song.link";
-        await this.$axios({ url: '/page?url=' + encodeURIComponent(this.release.songlink), baseURL: url })
-          .then(response => {
-            this.loading = false;
-            this.links = response.data.nodesByUniqueId;
-          })
-          .catch(error => console.log(error.response.data));
+        if (Object.keys(this.links).length === 0 && this.links.constructor === Object) {
+          await this.$store.dispatch('releases/getLinks', this.release);
+        }
+        this.loading = false;
       }
     }
   }
