@@ -46,8 +46,15 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics',
   	'nuxt-webfontloader',
   ],
+  /*
+  ** Google analytics tracking
+  */
+  googleAnalytics: {
+    id: 'UA-169274818-1'
+  },
   /*
   ** Web font loader
   */

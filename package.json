@@ -13,6 +13,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "gsap": "^3.3.4",
     "nuxt": "^2.13.2",
