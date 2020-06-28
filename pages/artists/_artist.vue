@@ -10,7 +10,7 @@
     <div class="content__body">
       <div class="artist">
         <div class="artist__avatar">
-          <img :src="avatar"/>
+          <img :src="artist.avatar_url"/>
         </div>
         <div class="artist__bio">
           {{ artist.bio }}
@@ -40,8 +40,6 @@
     },
     data() {
       return {
-        avatar: "",
-        links: "",
         timeline: gsap.timeline()
       }
     },
