@@ -28,15 +28,21 @@
   import { mapState } from 'vuex';
 
   export default {
-    head () {
-      return {
-        title: 'Artist | ' + this.artist.name,
-        meta: [
-          { hid: 'description', name: 'description', content: '' },
-          { hid: 'og:title', property: 'og:title', content: this.artist.name },
-          { hid: 'og:image', property: 'og:image', content: this.avatar }
-        ]
-      }
+    asyncData(context) {
+      context.store.commit('artists/get', context.params.artist);
+      const artist = context.store.state.artists.artist;
+      context.app.head.title = 'Artist | ' + artist.name;
+      context.app.head.meta = [
+          { hid: 'description', name: 'description', content: 'Learn more about ' + artist.name + '.' },
+          { hid: 'og:title', property: 'og:title', content: artist.name },
+          { hid: 'og:description', property: 'og:description', content: 'Learn more about ' + artist.name + '.' },
+          { hid: 'og:image', property: 'og:image', content: this.avatar },
+          { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com' + context.route.path },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+          { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+          { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
+          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
+      ]
     },
     mounted() {
       const timeline = gsap.timeline();
