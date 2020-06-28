@@ -53,10 +53,6 @@
       this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
       this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
 
-      const cover = document.getElementById('cover');
-      cover.onload = () => {
-      };
-      
       this.url = this.release.cover_url
       this.artist = this.release.artist[0].name;
     },

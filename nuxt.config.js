@@ -6,10 +6,6 @@ export default {
   /*
   ** Headers of the page
   */
-  loading: {
-    color: 'blue',
-    height: '5px'
-  },
   head: {
     title: 'Limelight Visions',
     meta: [
