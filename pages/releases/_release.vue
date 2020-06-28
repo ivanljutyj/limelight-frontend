@@ -36,7 +36,8 @@
           { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com' + context.route.path },
           { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
           { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
-          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
+          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
     },
     data: () => ({
