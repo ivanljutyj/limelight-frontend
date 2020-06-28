@@ -23,22 +23,19 @@
   import { mapState } from 'vuex';
 
   export default {
-    asyncData({ app, store, params }) {
-      store.commit('releases/get', params.release); 
-      const release = store.state.releases.release;
+    asyncData(context) {
+      context.store.commit('releases/get', context.params.release); 
+      const release = context.store.state.releases.release;
       const artist = release.artist[0].name;
-
-      app.head = {
-        title: 'Release | ' + artist + ' - ' + release.title,
-        meta: [
-          { hid: 'description', name: 'description', content: 'Stream the single "' + artist + ' - ' + release.title + '" here now!' },
+      context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
+      context.app.head.meta = [
+          { hid: 'description', name: 'description', content: 'Stream the single: ' + artist + ' - ' + release.title },
           { hid: 'og:title', property: 'og:title', content: artist + ' - ' + release.title },
           { hid: 'og:image', property: 'og:image', content: release.cover_url },
           { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
           { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
-        ]
-      }
+      ]
     },
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
