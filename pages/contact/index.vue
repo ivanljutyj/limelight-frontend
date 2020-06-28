@@ -44,7 +44,7 @@ export default {
     this.timeline.staggerTo('.content__subtitle', 1, { opacity: 1 }, 0.8);
   },
   updated() {
-    this.timeline.staggerTo('.content .button', 0.3, { opacity: 1, ease: Linear.easeInOut }, 0.3, "-=1");
+    this.timeline.staggerTo('.content .button', 0.3, { opacity: 1 }, 0.3, "-=1");
   },
   methods: {
     getContent() {

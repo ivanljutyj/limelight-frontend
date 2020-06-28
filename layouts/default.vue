@@ -25,6 +25,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import HeaderComponent from '~/components/Header.vue';
   import gsap from 'gsap';
 

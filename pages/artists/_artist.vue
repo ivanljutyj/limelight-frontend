@@ -1,10 +1,10 @@
 <template>
   <div class="content">
-    <div class="content__title">{{ currentArtist.name }}</div>
+    <div class="content__title">{{ artist.name }}</div>
     <div class="content__subtitle">
       <ul>
-        <li>Real name: {{ currentArtist.real_name }}</li>
-        <li>Location: {{ currentArtist.location }}</li>
+        <li>Real name: {{ artist.real_name }}</li>
+        <li>Location: {{ artist.location }}</li>
       </ul>
     </div>
     <div class="content__body">
@@ -13,11 +13,11 @@
           <img :src="avatar"/>
         </div>
         <div class="artist__bio">
-          {{ currentArtist.bio }}
+          {{ artist.bio }}
         </div>
       </div>
       <div class="artist__links">
-        <a class="button" v-for="link in currentArtist.buttons" :href="link.link" target="_blank">{{ link.title }}</a>
+        <a class="button" v-for="link in artist.buttons" :href="link.link" target="_blank">{{ link.title }}</a>
       </div>
     </div>
   </div>
@@ -25,20 +25,21 @@
 
 <script>
   import gsap from 'gsap';
+  import { mapState } from 'vuex';
+
   export default {
     head () {
       return {
-        title: 'Artist | ' + this.currentArtist.name,
+        title: 'Artist | ' + this.artist.name,
         meta: [
           { hid: 'description', name: 'description', content: '' },
-          { hid: 'og:title', property: 'og:title', content: this.currentArtist.name },
+          { hid: 'og:title', property: 'og:title', content: this.artist.name },
           { hid: 'og:image', property: 'og:image', content: this.avatar }
         ]
       }
     },
     data() {
       return {
-        currentArtist: [],
         avatar: "",
         links: "",
         timeline: gsap.timeline()
@@ -54,20 +55,13 @@
     updated() {
       this.timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
     },
-    beforeMount() {
-      this.getArtists();
+    fetch({ state, params }) {
+      state.commit('artists/get', params.artist);
     },
-    methods: {
-      async getArtists() {
-        let result = await this.$axios.$get('/artists');
-        let artists = result || [];
-        for (let i in artists) {
-          if (artists[i].slug === this.$route.params.artist) {
-            this.currentArtist = artists[i];
-            this.avatar = this.currentArtist.avatar_url;
-          }
-        }
-      }
+    computed: {
+      ...mapState({
+        artist: state => state.artists.artist
+      })
     }
   }
 </script>

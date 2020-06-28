@@ -86,26 +86,5 @@ export default {
     */
     extend (config, ctx) {
     }
-  },
-  generate: {
-    routes(callback) {
-       axios.get('https://api.limelightvisions.com/artists').then((response) => {
-        const items = response.data.map((a) => {
-            return '/artists/' + a.slug;
-        });
-
-        response.data.forEach((a) => {
-          if (a.releases.length) {
-            a.releases.forEach((b) => {
-              items.push('/releases/' + b.slug)
-            });
-          }
-        })
-
-        callback(null, items)
-      })
-     .catch(callback)
-    }
-
   }
 }

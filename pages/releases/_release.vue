@@ -20,18 +20,9 @@
 
 <script>
   import gsap from 'gsap';
+  import { mapState } from 'vuex';
+
   export default {
-    async asyncData (context) {
-      const response = await context.app.$axios.$get('releases');
-      response.filter(a => {
-          if (a.slug === context.params.release) {
-            return a;
-          }
-      });
-      if (response[0]) {
-        return { release: response[0] }
-      }
-    },
     head () {
       return {
         title: 'Release | ' + this.artist + ' - ' + this.release.title,
@@ -46,7 +37,6 @@
       }
     },
     data: () => ({
-      release: {},
       timeline: gsap.timeline(),
       url: '',
       loading: true,
@@ -69,6 +59,12 @@
       this.url = this.release.cover_url
       this.artist = this.release.artist[0].name;
       this.getStreamingLinks()
+    },
+    fetch({ store, params }) {
+      store.commit('releases/get', params.release); 
+    },
+    computed: {
+      ...mapState({ release: state => state.releases.release })
     },
     methods: {
       async getStreamingLinks() {

@@ -63,6 +63,7 @@
 
 <script>
   import gsap from 'gsap';
+  import { mapState } from 'vuex';
 
   export default {
     data: () => ({
@@ -72,14 +73,8 @@
       artistMenuOpen: false,
       artistMenu: gsap.timeline({ paused: true }),
       timeline: gsap.timeline({ paused: true }),
-      sidebar: gsap.timeline(),
-      artists: null,
-      releases: null
+      sidebar: gsap.timeline()
     }),
-    beforeMount() {
-      this.getArtists();
-      this.getReleases();
-    },
     mounted() {
       this.timeline.to('.header', 0.8, { height: '100vh' });
 
@@ -120,16 +115,13 @@
         } else {
           this.releaseMenu.reverse(0);
         }
-
       }
     },
-    methods: {
-      async getArtists() {
-        this.artists = await this.$axios.$get('/artists');
-      },
-      async getReleases() {
-        this.releases = await this.$axios.$get('/releases');
-      }
+    computed: {
+      ...mapState({
+        releases: state => state.releases.releases,
+        artists: state => state.artists.artists
+      })
     }
   }
 </script>
