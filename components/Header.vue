@@ -79,7 +79,7 @@
       this.timeline.to('.header', 0.8, { height: '100vh' });
 
       this.sidebar.to('.sidebar__logo img', 1, { opacity: 1, top: "20px" })
-      this.sidebar.staggerTo('.sidebar ul li', 0.5, { opacity: 1 }, 0.5, "-=0.5")
+      this.sidebar.staggerTo('.sidebar ul li', 0.2, { opacity: 1 }, 0.2, "-=0.5")
     },
     updated() {
       this.timeline.staggerTo('.header__menu ul li:not(.header__submenu)', 0.3, { opacity: 1 }, 0.1, '-=0.8');
