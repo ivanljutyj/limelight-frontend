@@ -36,7 +36,7 @@
           { hid: 'description', name: 'description', content: 'Learn more about ' + artist.name + '.' },
           { hid: 'og:title', property: 'og:title', content: artist.name },
           { hid: 'og:description', property: 'og:description', content: 'Learn more about ' + artist.name + '.' },
-          { hid: 'og:image', property: 'og:image', content: this.avatar },
+          { hid: 'og:image', property: 'og:image', content: artist.avatar_url },
           { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com' + context.route.path },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' },
           { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
