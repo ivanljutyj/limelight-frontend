@@ -30,7 +30,7 @@
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
       context.app.head.meta = [
           { hid: 'description', name: 'description', content: 'Stream the single: ' + artist + ' - ' + release.title },
-          { hid: 'og:description', property: 'og:description', content: 'Listen to ' + artist + ' - ' + release.title + ' now on your favorite streaming service.' },
+          { hid: 'og:description', property: 'og:description', content: 'Listen to "' + artist + ' - ' + release.title + '" now on your favorite streaming service.' },
           { hid: 'og:title', property: 'og:title', content: artist + ' - ' + release.title },
           { hid: 'og:image', property: 'og:image', content: release.cover_url },
           { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com' + context.route.path },
