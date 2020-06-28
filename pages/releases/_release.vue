@@ -23,13 +23,17 @@
   import { mapState } from 'vuex';
 
   export default {
-    head () {
-      return {
-        title: 'Release | ' + this.artist + ' - ' + this.release.title,
+    asyncData({ app, store, params }) {
+      store.commit('releases/get', params.release); 
+      const release = store.state.releases.release;
+      const artist = release.artist[0].name;
+
+      app.head = {
+        title: 'Release | ' + artist + ' - ' + release.title,
         meta: [
-          { hid: 'description', name: 'description', content: 'Stream the single "' + this.artist + ' - ' + this.release.title + '" here now!' },
-          { hid: 'og:title', property: 'og:title', content: this.artist + ' - ' + this.release.title },
-          { hid: 'og:image', property: 'og:image', content: this.url },
+          { hid: 'description', name: 'description', content: 'Stream the single "' + artist + ' - ' + release.title + '" here now!' },
+          { hid: 'og:title', property: 'og:title', content: artist + ' - ' + release.title },
+          { hid: 'og:image', property: 'og:image', content: release.cover_url },
           { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
           { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
