@@ -7,11 +7,7 @@
       <div class="content__cover">
         <img id="cover" :src="url">
       </div>
-      <div class="backdrop" v-if="loading">
-        <div class="spinner"></div>
-        <div class="logo">loading...</div>
-      </div>
-      <div class="content__listen" v-if="!loading">
+      <div class="content__listen">
         <a class="button" target="_blank" v-for="link in links" v-if="link.url" :href="link.url">{{ link.displayName }}</a>
       </div>
     </div>
@@ -24,7 +20,7 @@
 
   export default {
     asyncData(context) {
-      context.store.commit('releases/get', context.params.release); 
+      context.store.commit('releases/get', context.params.release);
       const release = context.store.state.releases.release;
       const artist = release.artist[0].name;
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
@@ -43,15 +39,11 @@
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
       url: '',
-      loading: true,
-      artist: '',
+      artist: ''
     }),
     updated() {
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
       this.timeline.play();
-    },
-    beforeMount() {
-      this.getStreamingLinks();
     },
     mounted() {
       this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
@@ -61,18 +53,13 @@
       this.artist = this.release.artist[0].name;
     },
     fetch({ store, params }) {
-      store.commit('releases/get', params.release); 
+      store.commit('releases/get', params.release);
+
+      const release = store.state.releases.release;
+      store.dispatch('releases/getLinks', release);
     },
     computed: {
       ...mapState({ release: state => state.releases.release, links: state => state.releases.links })
-    },
-    methods: {
-      async getStreamingLinks() {
-        if (Object.keys(this.links).length === 0 && this.links.constructor === Object) {
-          await this.$store.dispatch('releases/getLinks', this.release);
-        }
-        this.loading = false;
-      }
     }
   }
 </script>
