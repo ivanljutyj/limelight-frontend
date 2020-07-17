@@ -2,7 +2,8 @@ const axios = require('axios');
 
 export const state = () => ({
     releases: [],
-    release: {}
+    release: {},
+    links: {}
 })
 
 export const mutations = {
@@ -18,10 +19,19 @@ export const mutations = {
     },
     remove (state, { item }) {
         state.releases.splice(state.releases.indexOf(item), 1)
+    },
+    setLinks (state, payload) {
+        state.links = payload;
     }
 }
 
 export const actions = {
+    async getLinks({ commit }, payload) {
+        const url = "https://api.song.link/page?url=" + encodeURIComponent(payload.songlink);
+        let { data } = await axios.get(url);
+        console.log(data);
+        commit('setLinks', data.nodesByUniqueId)
+    },
     async nuxtServerInit({ commit }) {
         const { data } = await axios.get('https://api.limelightvisions.com/releases')
         commit('set', data);
