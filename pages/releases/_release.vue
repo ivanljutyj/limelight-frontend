@@ -19,7 +19,7 @@
   import { mapState } from 'vuex';
 
   export default {
-    asyncData(context) {
+    async asyncData(context) {
       context.store.commit('releases/get', context.params.release);
       const release = context.store.state.releases.release;
       const artist = release.artist[0].name;
@@ -35,6 +35,11 @@
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
+
+      const url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
+      let links = await context.app.$axios.$get(url);
+
+      return { links: links.nodesByUniqueId }
     },
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
@@ -54,12 +59,9 @@
     },
     fetch({ store, params }) {
       store.commit('releases/get', params.release);
-
-      const release = store.state.releases.release;
-      store.dispatch('releases/getLinks', release);
     },
     computed: {
-      ...mapState({ release: state => state.releases.release, links: state => state.releases.links })
+      ...mapState({ release: state => state.releases.release })
     }
   }
 </script>
