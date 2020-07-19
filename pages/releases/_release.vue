@@ -54,14 +54,10 @@
     },
     async fetch({ store, params }) {
       store.commit('releases/get', params.release);
-      const release = store.state.releases.release;
-      const links = store.state.releases.links;
-      if (Object.keys(links).length === 0) {
-        await store.dispatch('releases/getLinks', release);
-      }
+      store.commit('releases/getLinks', params.release);
     },
     computed: {
-      ...mapState({ release: state => state.releases.release, links: state => state.releases.links })
+      ...mapState({ release: state => state.releases.release, links: state => state.releases.currentLinks })
     }
   }
 </script>
