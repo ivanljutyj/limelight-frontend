@@ -12,6 +12,14 @@ import gsap from 'gsap';
 import { mapState } from 'vuex';
 
 export default {
+  head () {
+    return {
+      title: "Limelight Visions",
+      meta: [
+        { hid: 'description', name: 'description', content: '' }
+      ]
+    }
+  },
   data: () => ({
     release: {},
     url: ''
