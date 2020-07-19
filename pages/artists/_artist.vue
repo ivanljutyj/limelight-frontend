@@ -44,6 +44,22 @@
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
       ]
     },
+    head() {
+      return {
+        title: 'Artist | ' + this.artist.name,
+        meta: [
+          { hid: 'description', name: 'description', content: 'Learn more about ' + this.artist.name + '.' },
+          { hid: 'og:title', property: 'og:title', content: this.artist.name },
+          { hid: 'og:description', property: 'og:description', content: 'Learn more about ' + this.artist.name + '.' },
+          { hid: 'og:image', property: 'og:image', content: this.artist.avatar_url },
+          { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com/' + this.$route.path },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+          { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+          { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
+          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
+        ]
+      }
+    },
     mounted() {
       const timeline = gsap.timeline();
       timeline.to('.content__title', 0.5, { opacity: 1 });

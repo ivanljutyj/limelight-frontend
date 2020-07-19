@@ -36,6 +36,22 @@
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
     },
+    head() {
+      return {
+        title: 'Release | ' + this.artist + ' - ' + this.release.title,
+        meta: [
+          { hid: 'description', name: 'description', content: 'Stream the single: ' + this.artist + ' - ' + this.release.title },
+          { hid: 'og:description', property: 'og:description', content: 'Listen to "' + this.artist + ' - ' + this.release.title + '" now on your favorite streaming service.' },
+          { hid: 'og:title', property: 'og:title', content: this.artist + ' - ' + this.release.title },
+          { hid: 'og:image', property: 'og:image', content: this.release.cover_url },
+          { hid: 'og:url', property: 'og:url', content: 'https://limelightvisions.com' + this.$route.path },
+          { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+          { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
+          { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        ]
+      }
+    },
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
       url: '',
