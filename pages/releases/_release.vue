@@ -20,6 +20,7 @@
 
   export default {
     async asyncData(context) {
+      console.log(context.payload);
       context.store.commit('releases/set', context.payload);
       context.store.commit('releases/get', context.params.release);
       const release = context.store.state.releases.release;

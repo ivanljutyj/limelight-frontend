@@ -105,12 +105,12 @@ export default {
 
       let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
         return res.data.map((release) => {
-          return '/releases/' + release.slug
+           return { route: '/releases/' + release.slug, payload: release }
         })
       })
       let artists = axios.get('http://api.limelightvisions.com/artists').then((res) => {
         return res.data.map((artist) => {
-          return '/artists/' + artist.slug
+           return { route: '/artist/' + artist.slug, payload: artist }
         })
       })
       let posts = axios.get('http://api.limelightvisions.com/posts').then((res) => {
