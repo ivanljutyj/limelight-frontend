@@ -31,7 +31,7 @@ export const mutations = {
 
 export const actions = {
     async getReleases({ commit }) {
-        const { data } = await axios.get('http://api.limelightvisions.com/releases')
+        const { data } = await axios.get('https://api.limelightvisions.com/releases')
         commit('set', data);
 
         for (const release of data) {
