@@ -95,13 +95,13 @@ export default {
   },
   generate: {
     routes() {
-      let releases = axios.get('https://api.limelightvisions.com/releases').then((res) => {
-        return res.data.releases.map((release) => {
+      let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
+        return res.data.map((release) => {
           return '/releases/' + release.slug
         })
       })
-      let artists = axios.get('https://api.limelightvisions.com/artists').then((res) => {
-        return res.data.artists.map((artist) => {
+      let artists = axios.get('http://api.limelightvisions.com/artists').then((res) => {
+        return res.data.map((artist) => {
           return '/artists/' + artist.slug
         })
       })
