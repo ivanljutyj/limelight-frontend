@@ -66,6 +66,21 @@
   import { mapState } from 'vuex';
 
   export default {
+    asyncData(context) {
+      let releases = [
+        { slug: 'ffmd', title: 'ffmd'},
+        { slug: 'still-alive', title: 'still alive'}
+      ]
+
+      let artists = [
+        { slug: 'beat-burner', name: 'beat burner'},
+        { slug: 'billy-bad', title: 'billy bad'}
+      ]
+      return {
+        artists: artists,
+        releases: releases
+      }
+    },
     data: () => ({
       menuOpen: false,
       releaseMenuOpen: false,
