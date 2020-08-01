@@ -111,7 +111,7 @@ export default {
           return { route: '/', payload: res.data }
       })
       return Promise.all([releases, artists, posts]).then(values => {
-        return values.flat().map(value => {
+        return values.flat(1).map(value => {
           return value;
         });
       })
