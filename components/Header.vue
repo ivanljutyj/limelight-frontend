@@ -74,7 +74,7 @@
 
       let artists = [
         { slug: 'beat-burner', name: 'beat burner'},
-        { slug: 'billy-bad', title: 'billy bad'}
+        { slug: 'billy-bad', name: 'billy bad'}
       ]
       return {
         artists: artists,
