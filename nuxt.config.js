@@ -94,25 +94,20 @@ export default {
     }
   },
   generate: {
-    interval: 10000,
-    async routes(callback) {
-       await axios.get('https://api.limelightvisions.com/artists').then((response) => {
-        const items = response.data.map((a) => {
-            return '/artists/' + a.slug;
-        });
-
-        response.data.forEach((a) => {
-          if (a.releases.length) {
-            a.releases.forEach((b) => {
-              items.push('/releases/' + b.slug)
-            });
-          }
+    routes() {
+      let releases = axios.get('https://api.limelightvisions.com/releases', {params: {size: 10}}).then((res) => {
+        return res.data.releases.map((post) => {
+          return '/releases/' + release.id
         })
-
-        callback(null, items)
       })
-     .catch(callback)
+      let artists = axios.get('https://api.limelightvisions.com/artists', {params: {size: 10}}).then((res) => {
+        return res.data.content.map((artist) => {
+          return '/artists/' + artist.id
+        })
+      })
+      return Promise.all([releases, artists]).then(values => {
+        return values.join().split(',');
+      })
     }
-
   }
 }
