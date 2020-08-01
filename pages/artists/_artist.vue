@@ -25,12 +25,10 @@
 
 <script>
   import gsap from 'gsap';
-  import { mapState } from 'vuex';
 
   export default {
     asyncData(context) {
-      context.store.commit('artists/get', context.params.artist);
-      const artist = context.store.state.artists.artist;
+      const artist = context.payload;
       context.app.head.title = 'Artist | ' + artist.name;
       context.app.head.meta = [
           { hid: 'description', name: 'description', content: 'Learn more about ' + artist.name + '.' },
@@ -43,6 +41,8 @@
           { hid: 'twitter:site', name: 'twitter:site', content: '@limelightvisions' },
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' }
       ]
+
+      return { artist: artist }
     },
     head() {
       return {
@@ -68,14 +68,6 @@
       timeline.to('.artist__avatar', 0.5, { opacity: 1, rotationY: 0 } );
       timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
     },
-    fetch({ store, params }) {
-      store.commit('artists/get', params.artist);
-    },
-    computed: {
-      ...mapState({
-        artist: state => state.artists.artist
-      })
-    }
   }
 </script>
 

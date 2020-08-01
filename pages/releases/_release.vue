@@ -16,12 +16,10 @@
 
 <script>
   import gsap from 'gsap';
-  import { mapState } from 'vuex';
 
   export default {
-    asyncData(context) {
-      context.store.commit('releases/get', context.params.release);
-      const release = context.store.state.releases.release;
+    async asyncData(context) {
+      const release = context.payload;
       const artist = release.artist[0].name;
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
       context.app.head.meta = [
@@ -35,6 +33,11 @@
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
+
+      const url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
+      let links = await context.app.$axios.$get(url);
+
+      return { release: release, artist: artist, links: links.nodesByUniqueId }
     },
     head() {
       return {
@@ -54,8 +57,6 @@
     },
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
-      url: '',
-      artist: ''
     }),
     updated() {
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
@@ -64,16 +65,6 @@
     mounted() {
       this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
       this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
-
-      this.url = this.release.cover_url
-      this.artist = this.release.artist[0].name;
-    },
-    async fetch({ store, params }) {
-      store.commit('releases/get', params.release);
-      store.commit('releases/getLinks', params.release);
-    },
-    computed: {
-      ...mapState({ release: state => state.releases.release, links: state => state.releases.currentLinks })
     }
   }
 </script>

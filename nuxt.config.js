@@ -94,19 +94,26 @@ export default {
     }
   },
   generate: {
+    concurrency: 1,
+    interval: 5000,
     routes() {
       let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
         return res.data.map((release) => {
-          return '/releases/' + release.slug
+          return { route: '/releases/' + release.slug, payload: release }
         })
       })
       let artists = axios.get('http://api.limelightvisions.com/artists').then((res) => {
         return res.data.map((artist) => {
-          return '/artists/' + artist.slug
+          return { route: '/artists/' + artist.slug, payload: artist }
         })
       })
-      return Promise.all([releases, artists]).then(values => {
-        return values.join().split(',');
+      let posts = axios.get('http://api.limelightvisions.com/posts').then((res) => {
+          return { route: '/', payload: res.data }
+      })
+      return Promise.all([releases, artists, posts]).then(values => {
+        return values.flat().map(value => {
+          return value;
+        });
       })
     }
   }

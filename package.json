@@ -16,10 +16,12 @@
     "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "gsap": "^3.3.4",
-    "nuxt": "^2.13.2",
+    "nuxt": "^2.14.0",
     "nuxt-webfontloader": "^1.1.0",
     "sass-mq": "^5.0.1",
-    "vue-scrollmagic": "^1.2.0"
+    "stripe": "^8.78.0",
+    "vue-scrollmagic": "^1.2.0",
+    "vue-youtube-embed": "^2.2.2"
   },
   "devDependencies": {
     "node-sass": "^4.14.1",
