@@ -97,12 +97,12 @@ export default {
     routes() {
       let releases = axios.get('https://api.limelightvisions.com/releases', {params: {size: 10}}).then((res) => {
         return res.data.releases.map((post) => {
-          return '/releases/' + release.id
+          return '/releases/' + release.slug
         })
       })
       let artists = axios.get('https://api.limelightvisions.com/artists', {params: {size: 10}}).then((res) => {
         return res.data.content.map((artist) => {
-          return '/artists/' + artist.id
+          return '/artists/' + artist.slug
         })
       })
       return Promise.all([releases, artists]).then(values => {
