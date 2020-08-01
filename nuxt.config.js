@@ -94,7 +94,7 @@ export default {
     }
   },
   generate: {
-    interval: 5000,
+    interval: 10000,
     async routes(callback) {
        await axios.get('https://api.limelightvisions.com/artists').then((response) => {
         const items = response.data.map((a) => {
