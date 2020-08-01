@@ -95,8 +95,8 @@ export default {
   },
   generate: {
     interval: 5000,
-    routes(callback) {
-       axios.get('https://api.limelightvisions.com/artists').then((response) => {
+    async routes(callback) {
+       await axios.get('https://api.limelightvisions.com/artists').then((response) => {
         const items = response.data.map((a) => {
             return '/artists/' + a.slug;
         });
