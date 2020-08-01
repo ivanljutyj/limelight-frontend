@@ -7,11 +7,9 @@ export const state = () => ({
 
 export const mutations = {
     set (state, payload) {
-        state.list = payload;
+        state.post = post;
     },
-    get (state, slug) {
-        const post = state.posts.filter(post => post.slug === slug);
-        state.post = post[0] ? post[0] : {};
+    get (state) {
     },
     add (state, payload) {
         state.list.push({ payload })
@@ -23,7 +21,7 @@ export const mutations = {
 
 export const actions = {
     async getPosts({ commit }) {
-        const { data } = await axios.get('http://api.limelightvisions.com/posts')
+        const { data } = await axios.get('https://api.limelightvisions.com/posts')
         commit('set', data);
     }
 }

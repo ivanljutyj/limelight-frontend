@@ -9,11 +9,10 @@ export const state = () => ({
 
 export const mutations = {
     set (state, payload) {
-        state.releases = payload;
+        state.release = payload;
     },
-    get (state, slug) {
-        const release = state.releases.filter(release => release.slug === slug);
-        state.release = release[0] ? release[0] : {};
+    get (state) {
+        return state.release;
     },
     add (state, payload) {
         state.list.push({ payload })

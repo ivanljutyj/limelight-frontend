@@ -7,11 +7,10 @@ export const state = () => ({
   
 export const mutations = {
     set (state, payload) {
-        state.artists = payload;
+        state.artist = payload;
     },
-    get (state, slug) {
-        const artist = state.artists.filter(artist => artist.slug === slug);
-        state.artist = artist[0] ? artist[0] : {};
+    get (state) {
+        return state.artist;
     },
     add (state, payload) {
         state.artists.push({ payload })
