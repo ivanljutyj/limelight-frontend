@@ -20,7 +20,6 @@
 
   export default {
     async asyncData(context) {
-      console.log(context.payload);
       context.store.commit('releases/set', context.payload);
       context.store.commit('releases/get', context.params.release);
       const release = context.store.state.releases.release;
@@ -38,7 +37,7 @@
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
       let url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
-      let links = await axios.get(url);
+      let links = await context.app.$axios.$get(url);
 
       return { artist: artist, release: release, links: links.nodesByUniqueId }
     },
