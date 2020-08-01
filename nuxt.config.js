@@ -94,8 +94,6 @@ export default {
     }
   },
   generate: {
-    concurrency: 1,
-    interval: 5000,
     routes() {
       Object.defineProperty(Array.prototype, 'flat', {
         value: function(depth = 1) {
@@ -103,15 +101,16 @@ export default {
             return flat.concat((Array.isArray(toFlatten) && (depth>1)) ? toFlatten.flat(depth-1) : toFlatten);
           }, []);
         }
-    });
+      });
+
       let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
         return res.data.map((release) => {
-          return { route: '/releases/' + release.slug, payload: release }
+          return '/releases/' + release.slug
         })
       })
       let artists = axios.get('http://api.limelightvisions.com/artists').then((res) => {
         return res.data.map((artist) => {
-          return { route: '/artists/' + artist.slug, payload: artist }
+          return '/artists/' + artist.slug
         })
       })
       let posts = axios.get('http://api.limelightvisions.com/posts').then((res) => {

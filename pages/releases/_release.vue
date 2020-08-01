@@ -16,10 +16,13 @@
 
 <script>
   import gsap from 'gsap';
+  import { mapState } from 'vuex';
 
   export default {
     async asyncData(context) {
-      const release = context.payload;
+      context.store.commit('releases/set', context.payload);
+      context.store.commit('releases/get', context.params.release);
+      const release = context.store.state.releases.release;
       const artist = release.artist[0].name;
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
       context.app.head.meta = [
@@ -33,11 +36,10 @@
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
+      let url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
+      let links = await axios.get(url);
 
-      const url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
-      let links = await context.app.$axios.$get(url);
-
-      return { release: release, artist: artist, links: links.nodesByUniqueId }
+      return { artist: artist, release: release, links: links.nodesByUniqueId }
     },
     head() {
       return {
@@ -57,6 +59,7 @@
     },
     data: () => ({
       timeline: gsap.timeline({ paused: true }),
+      url: '',
     }),
     updated() {
       this.timeline.staggerTo('.content__listen .button', 0.5, { opacity: 1 }, 0.2);
@@ -65,6 +68,8 @@
     mounted() {
       this.timeline.to('.content__title', 1, { opacity: 1}, 0.8);
       this.timeline.to('.content__cover', 0.5, { opacity: 1, rotationY: 0 }, "-=1");
+
+      this.url = this.release.cover_url
     }
   }
 </script>

@@ -25,10 +25,13 @@
 
 <script>
   import gsap from 'gsap';
+  import { mapState } from 'vuex';
 
   export default {
     asyncData(context) {
-      const artist = context.payload;
+      context.store.commit('artists/set', context.payload);
+      context.store.commit('artists/get', context.params.artist);
+      const artist = context.store.state.artists.artist;
       context.app.head.title = 'Artist | ' + artist.name;
       context.app.head.meta = [
           { hid: 'description', name: 'description', content: 'Learn more about ' + artist.name + '.' },
@@ -67,7 +70,7 @@
       timeline.to('.artist__bio', 0.5, { opacity: 1 });
       timeline.to('.artist__avatar', 0.5, { opacity: 1, rotationY: 0 } );
       timeline.staggerTo('.artist__links .button', 0.5, { opacity: 1 }, 0.5);
-    },
+    }
   }
 </script>
 

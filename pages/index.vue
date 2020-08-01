@@ -29,9 +29,6 @@ import gsap from 'gsap';
 import { mapState } from 'vuex';
 
 export default {
-  asyncData({ payload }) {
-    return { posts: payload }
-  },
   head () {
     return {
       title: "Limelight Visions",
@@ -40,10 +37,15 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState({
+      posts: state => state.posts.list
+    })
+  },
   mounted() {
     const timeline = gsap.timeline({ paused: true });
     // timeline.to('.content img', 0.5, { opacity: 1, rotationY: 0 });
-    timeline.staggerTo('.post__embed', 0.5, { opacity: 1, rotationY: 0 }, 0.3);
+    timeline.staggerTo('.post__group', 0.5, { opacity: 1 }, 0.3);
 
     timeline.play();
   }
@@ -56,19 +58,17 @@ export default {
       margin-bottom: 25px;
       &__group {
         margin-bottom: 20px;
+        opacity: 0;
       }
       &__title {
         text-transform: uppercase;
       }
       &__embed {
         position: relative;
-        opacity: 0;
         overflow: hidden;
         padding-bottom: 350px;
         height: 0;
         max-width: 100%;
-        width: 500px;
-        transform: rotateY(-180deg);
         iframe, embed, object {
           left: 0;
           top: 0;
@@ -85,6 +85,7 @@ export default {
       max-width: 500px;
       margin-bottom: 20px;
       width: 100%;
+      transform: rotateY(-180deg);
     }
     .button {
       cursor: pointer;
