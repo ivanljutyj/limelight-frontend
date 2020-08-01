@@ -66,21 +66,6 @@
   import { mapState } from 'vuex';
 
   export default {
-    asyncData(context) {
-      let releases = [
-        { slug: 'ffmd', title: 'ffmd'},
-        { slug: 'still-alive', title: 'still alive'}
-      ]
-
-      let artists = [
-        { slug: 'beat-burner', name: 'beat burner'},
-        { slug: 'billy-bad', name: 'billy bad'}
-      ]
-      return {
-        artists: artists,
-        releases: releases
-      }
-    },
     data: () => ({
       menuOpen: false,
       releaseMenuOpen: false,
@@ -88,7 +73,15 @@
       artistMenuOpen: false,
       artistMenu: gsap.timeline({ paused: true }),
       timeline: gsap.timeline({ paused: true }),
-      sidebar: gsap.timeline()
+      sidebar: gsap.timeline(),
+      artists: [
+        { slug: 'beat-burner', name: 'beat burner'},
+        { slug: 'billy-bad', name: 'billy bad'}
+      ],
+      releases: [
+        { slug: 'ffmd', title: 'ffmd'},
+        { slug: 'still-alive', title: 'still alive'}
+      ]
     }),
     mounted() {
       this.timeline.to('.header', 0.8, { height: '100vh' });
