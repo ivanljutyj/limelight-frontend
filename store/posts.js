@@ -23,7 +23,7 @@ export const mutations = {
 
 export const actions = {
     async nuxtServerInit({ commit }) {
-        const { data } = await axios.get('https://api.limelightvisions.com/posts')
+        const { data } = await axios.get('http://api.limelightvisions.com/posts')
         commit('set', data);
     }
 }
