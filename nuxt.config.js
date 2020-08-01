@@ -73,7 +73,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'https://api.limelightvisions.com'
+    baseURL: 'http://api.limelightvisions.com'
   },
   /*
   ** Style resources
