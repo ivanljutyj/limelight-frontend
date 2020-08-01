@@ -15,6 +15,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://js.stripe.com/v3' }
     ]
   },
   /*
@@ -91,6 +94,7 @@ export default {
     }
   },
   generate: {
+    interval: 5000,
     routes(callback) {
        axios.get('https://api.limelightvisions.com/artists').then((response) => {
         const items = response.data.map((a) => {
