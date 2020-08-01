@@ -103,17 +103,17 @@ export default {
         }
       });
 
-      let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
+      let releases = axios.get('https://api.limelightvisions.com/releases').then((res) => {
         return res.data.map((release) => {
            return { route: '/releases/' + release.slug, payload: release }
         })
       })
-      let artists = axios.get('http://api.limelightvisions.com/artists').then((res) => {
+      let artists = axios.get('https://api.limelightvisions.com/artists').then((res) => {
         return res.data.map((artist) => {
            return { route: '/artist/' + artist.slug, payload: artist }
         })
       })
-      let posts = axios.get('http://api.limelightvisions.com/posts').then((res) => {
+      let posts = axios.get('https://api.limelightvisions.com/posts').then((res) => {
           return { route: '/', payload: res.data }
       })
       return Promise.all([releases, artists, posts]).then(values => {
