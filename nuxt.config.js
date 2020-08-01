@@ -97,6 +97,13 @@ export default {
     concurrency: 1,
     interval: 5000,
     routes() {
+      Object.defineProperty(Array.prototype, 'flat', {
+        value: function(depth = 1) {
+          return this.reduce(function (flat, toFlatten) {
+            return flat.concat((Array.isArray(toFlatten) && (depth>1)) ? toFlatten.flat(depth-1) : toFlatten);
+          }, []);
+        }
+    });
       let releases = axios.get('http://api.limelightvisions.com/releases').then((res) => {
         return res.data.map((release) => {
           return { route: '/releases/' + release.slug, payload: release }
