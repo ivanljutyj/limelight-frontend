@@ -93,7 +93,8 @@
       opacity: 0;
       transform: rotateY(-180deg);
       margin-bottom: 20px;
-
+      max-width: 500px;
+      width: 100%;
       img {
         max-width: 500px;
         width: 100%;
