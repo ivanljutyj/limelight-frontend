@@ -5,7 +5,7 @@ export default {
   mode: 'universal',
   loading: {
     color: 'red',
-    height: '2px'
+    height: '5px'
   },
   /*
   ** Headers of the page
