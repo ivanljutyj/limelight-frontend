@@ -28,10 +28,13 @@
   import { mapState } from 'vuex';
 
   export default {
-    asyncData(context) {
-      context.store.commit('artists/set', context.payload);
-      context.store.commit('artists/get', context.params.artist);
-      const artist = context.store.state.artists.artist;
+    async asyncData(context) {
+      let artist = context.payload ?
+        context.payload :
+        await context.app.$axios.$get('https://api.limelightvisions.com/artists?slug=' + context.params.artist);
+
+      artist = artist[0];
+
       context.app.head.title = 'Artist | ' + artist.name;
       context.app.head.meta = [
           { hid: 'description', name: 'description', content: 'Learn more about ' + artist.name + '.' },

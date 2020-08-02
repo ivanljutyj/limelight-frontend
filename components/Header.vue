@@ -124,12 +124,6 @@
           this.releaseMenu.reverse(0);
         }
       }
-    },
-    computed: {
-      ...mapState({
-        releases: state => state.releases.releases,
-        artists: state => state.artists.artists
-      })
     }
   }
 </script>

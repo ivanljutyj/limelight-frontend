@@ -8,7 +8,7 @@
         <img id="cover" :src="url">
       </div>
       <div class="content__listen">
-        <a class="button" target="_blank" v-for="link in links" v-if="link.url" :href="link.url">{{ link.displayName }}</a>
+        <a class="button" target="_blank" v-for="link in links" v-if="link.url" :href="link.url">{{ link.provider }}</a>
       </div>
     </div>
   </div>
@@ -16,14 +16,16 @@
 
 <script>
   import gsap from 'gsap';
-  import { mapState } from 'vuex';
 
   export default {
     async asyncData(context) {
-      context.store.commit('releases/set', context.payload);
-      context.store.commit('releases/get', context.params.release);
-      const release = context.store.state.releases.release;
+      let release = context.payload ?
+        context.payload :
+        await context.app.$axios.$get('https://api.limelightvisions.com/releases?slug=' + context.params.release);
+
+      release = release[0];
       const artist = release.artist[0].name;
+
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
       context.app.head.meta = [
           { hid: 'description', name: 'description', content: 'Stream the single: ' + artist + ' - ' + release.title },
@@ -36,10 +38,8 @@
           { hid: 'twitter:creator', name: 'twitter:creator', content: '@iambillybad' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ]
-      let url = "https://api.song.link/page?url=" + encodeURIComponent(release.songlink);
-      let links = await context.app.$axios.$get(url);
 
-      return { artist: artist, release: release, links: links.nodesByUniqueId }
+      return { artist: artist, release: release, links: release.providers }
     },
     head() {
       return {

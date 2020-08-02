@@ -29,6 +29,11 @@ import gsap from 'gsap';
 import { mapState } from 'vuex';
 
 export default {
+  async asyncData(context) {
+    let posts = await context.app.$axios.$get('https://api.limelightvisions.com/posts');
+
+    return { posts: posts }
+  },
   head () {
     return {
       title: "Limelight Visions",
@@ -36,11 +41,6 @@ export default {
         { hid: 'description', name: 'description', content: '' }
       ]
     }
-  },
-  computed: {
-    ...mapState({
-      posts: state => state.posts.list
-    })
   },
   mounted() {
     const timeline = gsap.timeline({ paused: true });
