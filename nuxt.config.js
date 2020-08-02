@@ -3,6 +3,10 @@ import axios from 'axios'
 
 export default {
   mode: 'universal',
+  loading: {
+    color: 'red',
+    height: '2px'
+  },
   /*
   ** Headers of the page
   */
@@ -23,7 +27,6 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: true,
   /*
   ** Global CSS
   */
