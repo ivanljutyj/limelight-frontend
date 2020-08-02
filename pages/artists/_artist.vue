@@ -33,7 +33,9 @@
         context.payload :
         await context.app.$axios.$get('https://api.limelightvisions.com/artists?slug=' + context.params.artist);
 
-      artist = artist[0];
+      if (!context.payload) {
+        artist = artist[0];
+      }
 
       context.app.head.title = 'Artist | ' + artist.name;
       context.app.head.meta = [
