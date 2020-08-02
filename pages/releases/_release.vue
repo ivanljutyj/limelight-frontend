@@ -23,7 +23,10 @@
         context.payload :
         await context.app.$axios.$get('https://api.limelightvisions.com/releases?slug=' + context.params.release);
 
-      release = release[0];
+      if (!context.payload) {
+        release = release[0];
+      }
+
       const artist = release.artist[0].name;
 
       context.app.head.title = 'Release | ' + artist + ' - ' + release.title;
