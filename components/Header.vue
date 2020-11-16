@@ -79,6 +79,7 @@
         { slug: 'billy-bad', name: 'billy bad'}
       ],
       releases: [
+        { slug: 'born-star', title: 'born star'},
         { slug: 'ffmd', title: 'ffmd'},
         { slug: 'still-alive', title: 'still alive'}
       ]
