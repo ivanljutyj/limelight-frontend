@@ -16,7 +16,7 @@
     "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "gsap": "^3.3.4",
-    "nuxt": "^2.13.2",
+    "nuxt": "^3.4.3",
     "nuxt-webfontloader": "^1.1.0",
     "sass-mq": "^5.0.1",
     "vue-scrollmagic": "^1.2.0"
